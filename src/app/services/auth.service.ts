@@ -6,27 +6,21 @@ import {
   AngularFirestore,
   AngularFirestoreDocument
 } from "angularfire2/firestore";
-import * as firebase from "firebase/app";
+//import * as firebase from "firebase/app";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs";
 import { switchMap } from "rxjs/operators";
 import { User } from "./../models/user";
+
 @Injectable()
 export class AuthService {
   private user: Observable<User | null>;
+
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore
-  ) {
-    this.user = this.afAuth.authState.switchMap(user => {
-      if (user) {
-        return this.afStore.doc<User>(`users/${user.uid}`).valueChanges();
-      } else {
-        return Observable.of(null);
-      }
-    });
-  }
+  ) {}
   siginUp(name: string, email: string, password: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
@@ -54,7 +48,7 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       name: user.name || "",
-      gid: user.gid,
+      gid: user.gid || [""],
       photoURL: user.photoURL || "",
       nomi: user.nomi
     };
@@ -68,7 +62,7 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       name: user.name || "",
-      gid: user.gid,
+      gid: user.gid || [""],
       photoURL: user.photoURL || "",
       nomi: user.nomi
     };
@@ -78,15 +72,7 @@ export class AuthService {
     const docUser: AngularFirestoreDocument<User> = this.afStore.doc(
       `items/${user.uid}`
     );
-    var tmp = docUser.valueChanges();
-    const rtnValue: User = {
-      uid: tmp.uid,
-      email: tmp.email,
-      name: user.name || "",
-      gid: user.gid,
-      photoURL: user.photoURL || "",
-      nomi: user.nomi
-    };
-    return ur;
+
+    return docUser.valueChanges();
   }
 }

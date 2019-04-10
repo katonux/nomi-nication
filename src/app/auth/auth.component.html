@@ -14,15 +14,22 @@
 
 <form>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="メールアドレス" />
+    <input
+      type="text"
+      [value]="email"
+      class="form-control"
+      placeholder="メールアドレス"
+      (submit)="method($event)"
+    />{{email}}
   </div>
   <div class="form-group">
     <input
       type="password"
+      [value]="password"
       class="form-control"
       id="exampleInputPassword1"
       placeholder="パスワード"
-    />
+    />{{password}}
   </div>
   <button type="submit" class="btn btn-primary">ログイン</button>
   <button class="btn btn-primary">新規登録</button>

@@ -4,4 +4,10 @@ import { Component } from "@angular/core";
   selector: "dummy",
   templateUrl: "./dummy.component.html"
 })
-export class DummyComponent {}
+export class DummyComponent {
+  uid = "isoroot";
+  email = "dummy@isoroot.jp";
+  name = "dummy";
+  photoURL = "dummy.png";
+  nomi = 1;
+}
