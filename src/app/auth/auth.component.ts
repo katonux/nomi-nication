@@ -7,4 +7,6 @@ import { Component } from "@angular/core";
 export class AuthComponent {
   email = "";
   password = "";
+
+  //サービスの関数を呼び出す
 }

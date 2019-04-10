@@ -5,4 +5,6 @@ import { Component } from "@angular/core";
   templateUrl: "./slidetoggle.component.html",
   styleUrls: ["./slidetoggle.component.css"]
 })
-export class SlidetoggleComponent {}
+export class SlidetoggleComponent {
+  st = true;
+}
