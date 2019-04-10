@@ -21,6 +21,7 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore
   ) {}
+
   siginUp(name: string, email: string, password: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)

@@ -8,10 +8,8 @@ export class AuthComponent {
   email = "";
   password = "";
 
-  method(e: any) {
-    this.email = e.target.email;
-    this.password = e.target.password;
+  reciver(email_: string, password_: string) {
+    this.email = email_;
+    this.password = password_;
   }
-
-  //サービスの関数を呼び出す
 }

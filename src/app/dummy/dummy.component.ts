@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "dummy",
@@ -10,4 +11,6 @@ export class DummyComponent {
   name = "dummy";
   photoURL = "dummy.png";
   nomi = 1;
+
+  constructor(private authService, AuthService) {}
 }

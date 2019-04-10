@@ -1,9 +1,15 @@
 /* The switch - the box around the slider */
+.centering {
+  padding: 20px; /* 余白指定 */
+  text-align: center; /* 中央寄せ */
+  height: 180px; /* 高さ指定 */
+}
+
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 120px;
+  height: 68px;
 }
 
 /* Hide default HTML checkbox */
@@ -29,10 +35,10 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 52px;
+  width: 52px;
+  left: 8px;
+  bottom: 8px;
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -47,14 +53,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(52px);
+  -ms-transform: translateX(52px);
+  transform: translateX(52px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 68px;
 }
 
 .slider.round:before {

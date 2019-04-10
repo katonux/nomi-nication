@@ -1,18 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">ソクノミ！</a>
+<nav class="navbar shadow navbar-expand-xl navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img
+      src="/docs/sokunomi.png"
+      width="50"
+      height="50"
+      class="d-inline-block align-top"
+      alt=""
+    />
+    ソクノミ
+  </a>
 
   <div class="btn" *ngIf="show; else elseLogin">
-    <button type="submit" class="btn btn-primary">ログイン</button>
-    <button class="btn btn-primary">新規登録</button>
+    <button type="submit" class="btn btn-outline-light">ログイン</button>
+    <button class="btn btn-outline-light">新規登録</button>
   </div>
   <ng-template #elseLogin>
-    <div class="btn">
-      <button class="btn-primary">ログアウト</button>
-    </div>
+    <button class="btn btn-outline-light">ログアウト</button>
   </ng-template>
 </nav>
 
-<auth></auth>
-<dummy></dummy>
-<slide-toggle></slide-toggle>
-<put_table></put_table>
+<div class="container bg-white shadow">
+  <div class="box">
+    <auth></auth>
+  </div>
+</div>
+
+<div class="container bg-white shadow">
+  <div class="box">
+    <slide-toggle></slide-toggle>
+  </div>
+</div>
+
+<div class="container bg-white shadow">
+  <div class="box">
+    <put_table></put_table>
+  </div>
+</div>

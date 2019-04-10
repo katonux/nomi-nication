@@ -1,4 +1,4 @@
-<h2>認証</h2>
+<h3>ログイン</h3>
 
 <!--<button [routerLink]="['/signup']">新規登録</button>-->
 
@@ -12,6 +12,7 @@
 </form>
 -->
 
+<!--
 <form>
   <div class="form-group">
     <input
@@ -32,5 +33,32 @@
     />{{password}}
   </div>
   <button type="submit" class="btn btn-primary">ログイン</button>
-  <button class="btn btn-primary">新規登録</button>
+</form>
+-->
+
+<!--namitaku zone-->
+<form class="chart-form" (submit)="reciver(content1, content2)">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="content1"
+      name="comment1"
+      placeholder="メールアドレス"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      type="password"
+      class="form-control"
+      [(ngModel)]="content2"
+      name="comment2"
+      placeholder="パスワード"
+    />
+  </div>
+
+  <span class="input-group-btn">
+    <button class="btn btn-primary" type="submit">ログイン</button>
+  </span>
+  <div>mail: {{email}}<br />password: {{password}}</div>
 </form>

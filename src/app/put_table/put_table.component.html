@@ -1,15 +1,11 @@
-<h2>表を出力</h2>
-
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>icon</th>
       <th>name</th>
       <th>email</th>
     </tr>
   </thead>
   <tr *ngFor="let item of (items | async)">
-    <td>{{ item.photoURL }}</td>
     <td>{{ item.name }}</td>
     <td>{{ item.email }}</td>
   </tr>
