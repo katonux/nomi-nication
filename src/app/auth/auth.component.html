@@ -1,64 +1,31 @@
-<h3>ログイン</h3>
+<div class="container">
+  <div class="card shadow">
+    <div class="card-body text-center">
+      <!--namitaku zone-->
+      <form class="chart-form" (submit)="reciver(content1, content2)">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="content1"
+            name="comment1"
+            placeholder="メールアドレス"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="content2"
+            name="comment2"
+            placeholder="パスワード"
+          />
+        </div>
 
-<!--<button [routerLink]="['/signup']">新規登録</button>-->
-
-<!--
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-  <label for="email">Email</label>
-  <input type="email" class="input" formControlName="email" required />
-  <label for="password">Password</label>
-  <input type="password" class="input" formControlName="password" required />
-  <button type="submit" class="button">ログイン</button>
-</form>
--->
-
-<!--
-<form>
-  <div class="form-group">
-    <input
-      type="text"
-      [value]="email"
-      class="form-control"
-      placeholder="メールアドレス"
-      (submit)="method($event)"
-    />{{email}}
+        <span class="input-group-btn">
+          <button class="btn btn-light" type="submit">ログイン</button>
+        </span>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <input
-      type="password"
-      [value]="password"
-      class="form-control"
-      id="exampleInputPassword1"
-      placeholder="パスワード"
-    />{{password}}
-  </div>
-  <button type="submit" class="btn btn-primary">ログイン</button>
-</form>
--->
-
-<!--namitaku zone-->
-<form class="chart-form" (submit)="reciver(content1, content2)">
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="content1"
-      name="comment1"
-      placeholder="メールアドレス"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="password"
-      class="form-control"
-      [(ngModel)]="content2"
-      name="comment2"
-      placeholder="パスワード"
-    />
-  </div>
-
-  <span class="input-group-btn">
-    <button class="btn btn-primary" type="submit">ログイン</button>
-  </span>
-  <div>mail: {{email}}<br />password: {{password}}</div>
-</form>
+</div>

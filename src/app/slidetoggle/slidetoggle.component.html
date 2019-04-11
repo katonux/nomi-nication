@@ -1,8 +1,20 @@
-<div *ngIf="login">
-  <h3 text-center>エントリー</h3>
+<div class="card shadow text-center">
+  <div class="card-body">
+    <div *ngIf="login; else hideContent">
+      <h3 text-center>ENTRY HERE!</h3>
+      <h6 text-center>エントリーして今日飲みに行く仲間を探しましょう！</h6>
+      <label class="switch">
+        <input id="st" name="st" type="checkbox" [(ngModel)]="st" />
+        <span class="slider round"></span>
+      </label>
+    </div>
 
-  <label class="switch">
-    <input id="st" name="st" type="checkbox" [(ngModel)]="st" />
-    <span class="slider round"></span>
-  </label>
+    <ng-template #hideContent>
+      <h3 text-center style="color:#999">エントリー</h3>
+      <label class="switch">
+        <input type="checkbox" disabled />
+        <span class="slider round"></span>
+      </label>
+    </ng-template>
+  </div>
 </div>

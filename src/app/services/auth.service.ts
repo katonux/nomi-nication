@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 // 以下追加したもの
-// import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireAuth } from "angularfire2/auth";
 import {
   AngularFirestore,
   AngularFirestoreDocument
@@ -14,8 +14,18 @@ import { User } from "./../models/user";
 
 @Injectable()
 export class AuthService {
-  private user: Observable<User | null>;
   private afStore: AngularFirestore;
+  private afAuth: AngularFireAuth;
+  private user: User;
+  nullUserData: User = {
+    uid: "",
+    email: "",
+    name: "",
+    gid: [""],
+    photoURL: "",
+    nomi: 0
+  };
+  private users: User[];
 
   constructor() {}
 
@@ -27,7 +37,9 @@ export class AuthService {
       })
       .catch(err => console.log(err));
   }
-  login(email: string, password: string): Promise<any> {
+  */
+
+  login(email: string, password: string): Observable<User> {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(user => {
@@ -35,6 +47,7 @@ export class AuthService {
       })
       .catch(err => console.log(err));
   }
+  /*
   logout() {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(["/login"]);
@@ -64,14 +77,27 @@ export class AuthService {
     return this.afStore.doc(`items/${user.uid}`).set(data);
   }
   public getUserData(user: User) {
-    const docUser: AngularFirestoreDocument<User> = this.afStore.doc(
-      `items/${user.uid}`
-    );
-
-    return docUser.valueChanges();
+    this.afStore
+      .doc(`items/${user.uid}`)
+      .valueChanges()
+      .subscribe(result => {
+        if (result) {
+          return result;
+        } else {
+          return of(this.nullUserData);
+        }
+      });
+    return of(this.nullUserData);
   }
-
+  public getUsersData(nomi: number) {
+    return this.afStore
+      .collection<User>("items", ref => ref.where("nomi", "==", nomi))
+      .valueChanges();
+  }
   public setAfStore(afStore: AngularFirestore) {
     this.afStore = afStore;
+  }
+  public setAfAuth(afAuth: AngularFireAuth) {
+    this.afAuth = afAuth;
   }
 }

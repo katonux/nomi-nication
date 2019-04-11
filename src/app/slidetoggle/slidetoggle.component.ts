@@ -10,5 +10,5 @@ export class SlidetoggleComponent {
   //toggleが押されたとき、その変更を反映するために情報を返す
   //
   login = true;
-  st = true;
+  st = false;
 }

@@ -1,24 +1,17 @@
-<nav class="navbar shadow navbar-expand-lg navbar-dark bg-dark">
+<nav
+  class="navbar shadow  navbar-expand-lg navbar-dark"
+  style="background-color: #ec5502"
+>
   <a class="navbar-brand" routerLink="/">
-    <img
-      src="/docs/sokunomi.png"
-      width="45"
-      height="45"
-      class="d-inline-block align-top"
-      alt=""
-    />
+    <img src="/images/sokunomi-appicon2.png" width="50" height="50" alt="" />
   </a>
   <div class="btn" *ngIf="show; else elseLogin">
-    <a routerLink="/auth" class="btn btn-outline-light">ログイン</a>
     <a routerLink="/register" class="btn btn-outline-light">新規登録</a>
+    <a routerLink="/auth" class="btn btn-outline-light">ログイン</a>
   </div>
   <ng-template #elseLogin>
-    <button routerLink="/auth" class="btn btn-outline-light">ログアウト</button>
+    <a routerLink="/auth" class="btn btn-outline-light">ログアウト</a>
   </ng-template>
 </nav>
 
-<div class="container bg-white shadow">
-  <div class="box">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<router-outlet></router-outlet>
