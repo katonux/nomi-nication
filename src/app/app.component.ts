@@ -15,7 +15,11 @@ import { User } from "./models/user";
 })
 export class AppComponent {
   show = true;
-  
-  constructor(private afStore: AngularFirestore, private authService: AuthService) {
+
+  constructor(
+    private afStore: AngularFirestore,
+    private authService: AuthService
+  ) {
     this.authService.setAfStore(this.afStore);
+  }
 }
