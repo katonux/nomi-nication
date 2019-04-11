@@ -1,5 +1,5 @@
 <nav class="navbar shadow navbar-expand-xl navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" routerLink="/">
     <img
       src="/docs/sokunomi.png"
       width="50"
@@ -9,30 +9,17 @@
     />
     ソクノミ
   </a>
-
   <div class="btn" *ngIf="show; else elseLogin">
-    <button type="submit" class="btn btn-outline-light">ログイン</button>
-    <button class="btn btn-outline-light">新規登録</button>
+    <a routerLink="/auth" class="btn btn-outline-light">ログイン</a>
+    <a routerLink="/register" class="btn btn-outline-light">新規登録</a>
   </div>
   <ng-template #elseLogin>
-    <button class="btn btn-outline-light">ログアウト</button>
+    <button routerLink="/auth" class="btn btn-outline-light">ログアウト</button>
   </ng-template>
 </nav>
 
 <div class="container bg-white shadow">
   <div class="box">
-    <auth></auth>
-  </div>
-</div>
-
-<div class="container bg-white shadow">
-  <div class="box">
-    <slide-toggle></slide-toggle>
-  </div>
-</div>
-
-<div class="container bg-white shadow">
-  <div class="box">
-    <put_table></put_table>
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,8 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { AppComponent } from "./app.component";
+import { HomeComponent } from "./home/home.component";
 import { AuthComponent } from "./auth/auth.component";
+import { RegisterComponent } from "./register/register.component";
 
 const routes: Routes = [
   {
@@ -10,11 +11,15 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        component: AppComponent
+        component: HomeComponent
       },
       {
         path: "auth",
         component: AuthComponent
+      },
+      {
+        path: "register",
+        component: RegisterComponent
       }
     ]
   }

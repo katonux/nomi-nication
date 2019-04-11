@@ -4,9 +4,15 @@
     <meta charset="utf-8" />
     <title>ソクノミ</title>
     <base href="/" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+      window.addEventListener("load", function() {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/serviceWorker.js");
+        }
+      });
+    </script>
   </head>
 
   <body>

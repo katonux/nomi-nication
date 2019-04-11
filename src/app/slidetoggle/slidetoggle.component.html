@@ -1,6 +1,8 @@
-<h3 text-center>エントリー</h3>
+<div *ngIf="login">
+  <h3 text-center>エントリー</h3>
 
-<label class="switch">
-  <input id="st" name="st" type="checkbox" [(ngModel)]="st" />
-  <span class="slider round"></span>
-</label>
+  <label class="switch">
+    <input id="st" name="st" type="checkbox" [(ngModel)]="st" />
+    <span class="slider round"></span>
+  </label>
+</div>

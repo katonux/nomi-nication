@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 // 以下追加したもの
-import { AngularFireAuth } from "angularfire2/auth";
+// import { AngularFireAuth } from "angularfire2/auth";
 import {
   AngularFirestore,
   AngularFirestoreDocument
 } from "angularfire2/firestore";
-//import * as firebase from "firebase/app";
+import * as firebase from "firebase/app";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs";
 import { switchMap } from "rxjs/operators";
@@ -15,14 +15,11 @@ import { User } from "./../models/user";
 @Injectable()
 export class AuthService {
   private user: Observable<User | null>;
+  private afStore: AngularFirestore;
 
-  constructor(
-    private router: Router,
-    private afAuth: AngularFireAuth,
-    private afStore: AngularFirestore
-  ) {}
+  constructor() {}
 
-  siginUp(name: string, email: string, password: string) {
+  /*   siginUp(name: string, email: string, password: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
@@ -42,9 +39,9 @@ export class AuthService {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(["/login"]);
     });
-  }
+  } */
   public createUserData(user: User) {
-    this.afStore.collection("items").add(user.uid);
+    // this.afStore.collection("items").doc(user.uid);
     const data: User = {
       uid: user.uid,
       email: user.email,
@@ -56,9 +53,6 @@ export class AuthService {
     this.afStore.doc(`items/${user.uid}`).set(data);
   }
   public updateUserData(user: User) {
-    var docUser: AngularFirestoreDocument<User> = this.afStore.doc(
-      `items/${user.uid}`
-    );
     const data: User = {
       uid: user.uid,
       email: user.email,
@@ -67,7 +61,7 @@ export class AuthService {
       photoURL: user.photoURL || "",
       nomi: user.nomi
     };
-    return docUser.set(data);
+    return this.afStore.doc(`items/${user.uid}`).set(data);
   }
   public getUserData(user: User) {
     const docUser: AngularFirestoreDocument<User> = this.afStore.doc(
@@ -75,5 +69,9 @@ export class AuthService {
     );
 
     return docUser.valueChanges();
+  }
+
+  public setAfStore(afStore: AngularFirestore) {
+    this.afStore = afStore;
   }
 }
