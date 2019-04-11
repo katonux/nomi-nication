@@ -16,16 +16,16 @@ import { User } from "./../models/user";
 export class AuthService {
   private afStore: AngularFirestore;
   private afAuth: AngularFireAuth;
-  private user: User;
-  nullUserData: User = {
+  private nullUserData: User = {
     uid: "",
     email: "",
+    password: "",
     name: "",
     gid: [""],
     photoURL: "",
     nomi: 0
   };
-  private users: User[];
+  private user: Observable<User>;
 
   constructor() {}
 
@@ -39,13 +39,51 @@ export class AuthService {
   }
   */
 
-  login(email: string, password: string): Observable<User> {
-    return this.afAuth.auth
-      .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        return this.updateUserData(user);
-      })
-      .catch(err => console.log(err));
+  login(email: string, password: string) {
+    // return this.afAuth.auth
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then(user => {
+    //     return this.updateUserData(user);
+    //   })
+    //   .catch(err => console.log(err));
+    //
+    ///
+    //
+    // const data: User = {
+    //   uid: email,
+    //   email: email,
+    //   password: password,
+    //   name: this.nullUserData.name,
+    //   gid: this.nullUserData.gid,
+    //   photoURL: this.nullUserData.photoURL,
+    //   nomi: this.nullUserData.nomi
+    // };
+    // var flg: boolean;
+    // this.user = this.getUserData(data);
+    // this.user.subscribe(res => {
+    //   if (res) {
+    //     flg = res.password === password;
+    //   }
+    // });
+    // this.user.subscribe(res =>
+    //   console.log("service" + res.email + "/" + res.password)
+    // );
+    // return flg ? this.user : of(this.nullUserData);
+
+    var users = this.afStore
+      .collection<User>("items", ref =>
+        ref.where("email", "==", email).where("password", "==", password)
+      )
+      .valueChanges();
+
+    users.subscribe(res => {
+      if (res.length == 1) {
+        this.user = this.getUserData(res[0]);
+      } else {
+        this.user = of(this.nullUserData);
+      }
+    });
+    return this.user;
   }
   /*
   logout() {
@@ -54,10 +92,10 @@ export class AuthService {
     });
   } */
   public createUserData(user: User) {
-    // this.afStore.collection("items").doc(user.uid);
     const data: User = {
       uid: user.uid,
       email: user.email,
+      password: user.password,
       name: user.name || "",
       gid: user.gid || [""],
       photoURL: user.photoURL || "",
@@ -69,25 +107,22 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email,
+      password: user.password,
       name: user.name || "",
       gid: user.gid || [""],
       photoURL: user.photoURL || "",
       nomi: user.nomi
     };
-    return this.afStore.doc(`items/${user.uid}`).set(data);
+    this.afStore.doc(`items/${user.uid}`).set(data);
   }
   public getUserData(user: User) {
-    this.afStore
-      .doc(`items/${user.uid}`)
-      .valueChanges()
-      .subscribe(result => {
-        if (result) {
-          return result;
-        } else {
-          return of(this.nullUserData);
-        }
-      });
-    return of(this.nullUserData);
+    this.user = this.afStore.doc<User>(`items/${user.uid}`).valueChanges();
+    this.user.subscribe(result => {
+      if (result == null) {
+        this.user = of(this.nullUserData);
+      }
+    });
+    return this.user;
   }
   public getUsersData(nomi: number) {
     return this.afStore
