@@ -56,8 +56,8 @@
     "tslint": "~5.9.1"
   },
   "engines": {
-    "node": "6.10.3",
-    "npm": "3.10.10"
+    "node": "10.15.3",
+    "npm": "6.4.0"
   },
   "keywords": [],
   "description": ""
