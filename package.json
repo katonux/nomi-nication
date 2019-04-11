@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "postinstall": "ng build --prod && node generate-sw.js",
+    "postinstall": "npm run build",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
