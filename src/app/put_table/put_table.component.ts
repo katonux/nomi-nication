@@ -19,6 +19,7 @@ export class Put_tableComponent {
 
   /** コレクションのストリームを格納 */
   items: Observable<User[]>;
+  num: number;
 
   // constructor(private afs: AngularFirestore) {
   //   /** itemsコレクションを取得してitemDocumentに代入 */
@@ -28,6 +29,10 @@ export class Put_tableComponent {
   //   this.items = this.itemsCollection.valueChanges();
   // }
   constructor(private authService: AuthService) {
+    this.items = this.authService.getUsersData(1);
+    this.items.subscribe(res => {
+      this.num = res.length;
+    });
     this.items = this.authService.getUsersData(1);
   }
 }

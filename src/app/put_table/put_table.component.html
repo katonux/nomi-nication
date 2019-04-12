@@ -1,6 +1,7 @@
 <div class="card shadow">
   <div class="card-body text-center">
-    <h6 class="card-title"><b>今日飲みに行けるアイソルーター</b></h6>
+    <h6 class="card-title"><b>今日飲みに行けるアイソルーターは</b></h6>
+    <h3 class="card-title"><b>{{num}}人</b></h3>
     <table class="table">
       <tr *ngFor="let item of (items | async)">
         <td>{{ item.name }}</td>

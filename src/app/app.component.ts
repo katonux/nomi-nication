@@ -15,11 +15,19 @@ import { User } from "./models/user";
 })
 export class AppComponent {
   show = true;
-
   constructor(
     private afStore: AngularFirestore,
     private authService: AuthService
   ) {
     this.authService.setAfStore(this.afStore);
+    this.authService.setAppComponent(this);
+  }
+
+  public fireLogin() {
+    if (this.authService.isLogined()) {
+      //TODO: slidetoggleの有効化
+      console.log("ログインした");
+      this.show = true;
+    }
   }
 }
